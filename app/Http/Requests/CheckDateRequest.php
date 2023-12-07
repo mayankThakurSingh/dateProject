@@ -12,7 +12,7 @@ class CheckDateRequest extends FormRequest
      * Indicates if the validator should stop on the first rule failure.
      *
      * @var bool
-    */
+     */
     protected $stopOnFirstFailure = true;
 
     /**
@@ -55,7 +55,7 @@ class CheckDateRequest extends FormRequest
                      * Check if the difference between start and end dates is between 2 and 5 years
                      */
                     $yearDifference = $startDate->diffInYears($endDate);
-                    if ($yearDifference >= 5 || $yearDifference <= 2) {
+                    if ($yearDifference >= 5 || $yearDifference < 2) {
                         $fail('The end date must be between 2 and 5 years apart from the start date.');
                     }
                 },
@@ -71,6 +71,8 @@ class CheckDateRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'start_date.date' => 'The start date must be a valid date with format d-m-y',
+            'end_date.date' => 'The end date must be a valid date with format d-m-y',
             'end_date.after_or_equal' => 'The end date must be between 2 and 5 years apart from the start date',
         ];
     }
