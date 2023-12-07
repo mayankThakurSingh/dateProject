@@ -55,7 +55,7 @@ class DateCheckController extends Controller
             return response()->json(['sunday_count' => $sunday_count], Response::HTTP_OK);
         } catch (Exception $e) {
             /**
-             * Can store log for debugging
+             * Can store log for debugging purpose
              */
             Log::info('Exception occured'. $e->getMessage());
 
